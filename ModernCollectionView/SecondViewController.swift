@@ -28,6 +28,10 @@ final class SecondViewController: UIViewController {
 
         self.dataSource = self.makeDataSource()
         self.collectionView.dataSource = self.dataSource
+
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        self.collectionView.collectionViewLayout = layout
         self.collectionView.register(
             UINib(nibName: "CustomCell", bundle: nil),
             forCellWithReuseIdentifier: "CustomCell"
@@ -69,5 +73,18 @@ extension SecondViewController: UICollectionViewDelegate {
     ) {
         self.items.remove(at: indexPath.item)
         self.applySnapshot()
+    }
+}
+
+extension SecondViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
+        CGSize(
+            width: self.items.count > 1 ? 200 : 400,
+            height: 600
+        )
     }
 }
