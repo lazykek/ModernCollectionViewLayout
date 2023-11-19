@@ -64,7 +64,6 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                                 <connections>
-                                    <outlet property="dataSource" destination="wnf-gV-Isg" id="BYb-ma-XIM"/>
                                     <outlet property="delegate" destination="wnf-gV-Isg" id="Ph7-iK-q9h"/>
                                 </connections>
                             </collectionView>
