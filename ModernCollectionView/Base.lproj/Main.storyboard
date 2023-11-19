@@ -98,6 +98,7 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="uRC-EY-QbJ" id="tbL-Cl-ie3"/>
+                        <outlet property="removeButton" destination="9Sy-9B-QlV" id="ai7-AG-Mao"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tqk-iD-YXn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

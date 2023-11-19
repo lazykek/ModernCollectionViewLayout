@@ -16,6 +16,7 @@
 		0945CDC22B094B830072BF07 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0945CDC02B094B830072BF07 /* CustomCell.swift */; };
 		0945CDC32B094B830072BF07 /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0945CDC12B094B830072BF07 /* CustomCell.xib */; };
 		0945CDC52B09FD740072BF07 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0945CDC42B09FD740072BF07 /* SecondViewController.swift */; };
+		0945CDC92B0A745B0072BF07 /* HorizontalSnapCarouselFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0945CDC82B0A745B0072BF07 /* HorizontalSnapCarouselFlowLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		0945CDC02B094B830072BF07 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		0945CDC12B094B830072BF07 /* CustomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCell.xib; sourceTree = "<group>"; };
 		0945CDC42B09FD740072BF07 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		0945CDC82B0A745B0072BF07 /* HorizontalSnapCarouselFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalSnapCarouselFlowLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 		0945CDA72B0947020072BF07 /* ModernCollectionView */ = {
 			isa = PBXGroup;
 			children = (
+				0945CDCA2B0B68E60072BF07 /* HorizontalSnapCarousel */,
 				0945CDA82B0947020072BF07 /* AppDelegate.swift */,
 				0945CDAA2B0947020072BF07 /* SceneDelegate.swift */,
 				0945CDAC2B0947020072BF07 /* ViewController.swift */,
@@ -74,6 +77,14 @@
 				0945CDC12B094B830072BF07 /* CustomCell.xib */,
 			);
 			path = ModernCollectionView;
+			sourceTree = "<group>";
+		};
+		0945CDCA2B0B68E60072BF07 /* HorizontalSnapCarousel */ = {
+			isa = PBXGroup;
+			children = (
+				0945CDC82B0A745B0072BF07 /* HorizontalSnapCarouselFlowLayout.swift */,
+			);
+			path = HorizontalSnapCarousel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,6 +161,7 @@
 			files = (
 				0945CDAD2B0947020072BF07 /* ViewController.swift in Sources */,
 				0945CDA92B0947020072BF07 /* AppDelegate.swift in Sources */,
+				0945CDC92B0A745B0072BF07 /* HorizontalSnapCarouselFlowLayout.swift in Sources */,
 				0945CDC22B094B830072BF07 /* CustomCell.swift in Sources */,
 				0945CDC52B09FD740072BF07 /* SecondViewController.swift in Sources */,
 				0945CDAB2B0947020072BF07 /* SceneDelegate.swift in Sources */,

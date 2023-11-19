@@ -17,6 +17,7 @@ private typealias DataSource = UICollectionViewDiffableDataSource<Section, Strin
 final class SecondViewController: UIViewController {
 
     @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet private weak var removeButton: UIButton!
 
     private var dataSource: DataSource?
     private lazy var items: [String] = {
@@ -28,8 +29,9 @@ final class SecondViewController: UIViewController {
 
         self.dataSource = self.makeDataSource()
         self.collectionView.dataSource = self.dataSource
+        self.collectionView.decelerationRate = .fast
 
-        let layout = UICollectionViewFlowLayout()
+        let layout = HorizontalSnapCarouselFlowLayout()
         layout.scrollDirection = .horizontal
         self.collectionView.collectionViewLayout = layout
         self.collectionView.register(
@@ -41,12 +43,13 @@ final class SecondViewController: UIViewController {
     }
 
     @IBAction private func remove() {
+        self.removeButton.isEnabled = false
         self.items.removeFirst()
         self.applySnapshot()
     }
 
     private func makeDataSource() -> DataSource {
-        UICollectionViewDiffableDataSource<Section, String>(
+        DataSource(
             collectionView: self.collectionView
         ) { collectionView, indexPath, number -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(
@@ -62,7 +65,13 @@ final class SecondViewController: UIViewController {
         var snapshot = Snapshot()
         snapshot.appendSections([.main])
         snapshot.appendItems(self.items)
-        self.dataSource?.apply(snapshot, animatingDifferences: true)
+        self.dataSource?.apply(
+            snapshot,
+            animatingDifferences: true,
+            completion: { [weak self] in
+                self?.removeButton.isEnabled = self?.items.count ?? 0 > 0
+            }
+        )
     }
 }
 
@@ -71,6 +80,7 @@ extension SecondViewController: UICollectionViewDelegate {
         _ collectionView: UICollectionView,
         didSelectItemAt indexPath: IndexPath
     ) {
+        self.removeButton.isEnabled = false
         self.items.remove(at: indexPath.item)
         self.applySnapshot()
     }
@@ -82,9 +92,12 @@ extension SecondViewController: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
-        CGSize(
-            width: self.items.count > 1 ? 200 : 400,
-            height: 600
+        let visibleSize = collectionView.frame.size
+        let cellSize = CGSize(
+            width: self.items.count > 1 ? visibleSize.width * 0.8 : visibleSize.width,
+            height: visibleSize.height
         )
+        (collectionViewLayout as? UICollectionViewFlowLayout)?.itemSize = cellSize
+        return cellSize
     }
 }
