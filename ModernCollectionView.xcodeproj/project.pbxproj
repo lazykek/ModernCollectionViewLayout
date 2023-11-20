@@ -17,6 +17,10 @@
 		0945CDC32B094B830072BF07 /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0945CDC12B094B830072BF07 /* CustomCell.xib */; };
 		0945CDC52B09FD740072BF07 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0945CDC42B09FD740072BF07 /* SecondViewController.swift */; };
 		0945CDC92B0A745B0072BF07 /* HorizontalSnapCarouselFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0945CDC82B0A745B0072BF07 /* HorizontalSnapCarouselFlowLayout.swift */; };
+		0945CDCC2B0B69070072BF07 /* HorizontalSnapCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0945CDCB2B0B69070072BF07 /* HorizontalSnapCarouselView.swift */; };
+		0945CDCE2B0B79960072BF07 /* UICollectionView+Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0945CDCD2B0B79960072BF07 /* UICollectionView+Reusable.swift */; };
+		0945CDD02B0B7DB10072BF07 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0945CDCF2B0B7DB10072BF07 /* ThirdViewController.swift */; };
+		0945CDD22B0B918C0072BF07 /* HorizontalSnapCarouselFlowLayoutDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0945CDD12B0B918C0072BF07 /* HorizontalSnapCarouselFlowLayoutDelegateProxy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +36,10 @@
 		0945CDC12B094B830072BF07 /* CustomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCell.xib; sourceTree = "<group>"; };
 		0945CDC42B09FD740072BF07 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		0945CDC82B0A745B0072BF07 /* HorizontalSnapCarouselFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalSnapCarouselFlowLayout.swift; sourceTree = "<group>"; };
+		0945CDCB2B0B69070072BF07 /* HorizontalSnapCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalSnapCarouselView.swift; sourceTree = "<group>"; };
+		0945CDCD2B0B79960072BF07 /* UICollectionView+Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Reusable.swift"; sourceTree = "<group>"; };
+		0945CDCF2B0B7DB10072BF07 /* ThirdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
+		0945CDD12B0B918C0072BF07 /* HorizontalSnapCarouselFlowLayoutDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalSnapCarouselFlowLayoutDelegateProxy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +77,8 @@
 				0945CDAA2B0947020072BF07 /* SceneDelegate.swift */,
 				0945CDAC2B0947020072BF07 /* ViewController.swift */,
 				0945CDC42B09FD740072BF07 /* SecondViewController.swift */,
+				0945CDCF2B0B7DB10072BF07 /* ThirdViewController.swift */,
+				0945CDCD2B0B79960072BF07 /* UICollectionView+Reusable.swift */,
 				0945CDAE2B0947020072BF07 /* Main.storyboard */,
 				0945CDB12B0947030072BF07 /* Assets.xcassets */,
 				0945CDB32B0947030072BF07 /* LaunchScreen.storyboard */,
@@ -83,6 +93,8 @@
 			isa = PBXGroup;
 			children = (
 				0945CDC82B0A745B0072BF07 /* HorizontalSnapCarouselFlowLayout.swift */,
+				0945CDCB2B0B69070072BF07 /* HorizontalSnapCarouselView.swift */,
+				0945CDD12B0B918C0072BF07 /* HorizontalSnapCarouselFlowLayoutDelegateProxy.swift */,
 			);
 			path = HorizontalSnapCarousel;
 			sourceTree = "<group>";
@@ -160,9 +172,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				0945CDAD2B0947020072BF07 /* ViewController.swift in Sources */,
+				0945CDD22B0B918C0072BF07 /* HorizontalSnapCarouselFlowLayoutDelegateProxy.swift in Sources */,
+				0945CDD02B0B7DB10072BF07 /* ThirdViewController.swift in Sources */,
 				0945CDA92B0947020072BF07 /* AppDelegate.swift in Sources */,
+				0945CDCC2B0B69070072BF07 /* HorizontalSnapCarouselView.swift in Sources */,
 				0945CDC92B0A745B0072BF07 /* HorizontalSnapCarouselFlowLayout.swift in Sources */,
 				0945CDC22B094B830072BF07 /* CustomCell.swift in Sources */,
+				0945CDCE2B0B79960072BF07 /* UICollectionView+Reusable.swift in Sources */,
 				0945CDC52B09FD740072BF07 /* SecondViewController.swift in Sources */,
 				0945CDAB2B0947020072BF07 /* SceneDelegate.swift in Sources */,
 			);
