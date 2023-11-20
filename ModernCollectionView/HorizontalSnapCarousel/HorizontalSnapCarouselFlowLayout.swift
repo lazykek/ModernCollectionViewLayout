@@ -9,6 +9,19 @@ import UIKit
 
 final class HorizontalSnapCarouselFlowLayout: UICollectionViewFlowLayout {
 
+    // MARK: - Public and internal vars
+
+    override var itemSize: CGSize {
+        get {
+            super.itemSize
+        }
+        set {
+            if newValue != super.itemSize {
+                super.itemSize = newValue
+            }
+        }
+    }
+
     // MARK: - Lifecycle
 
     override func targetContentOffset(
