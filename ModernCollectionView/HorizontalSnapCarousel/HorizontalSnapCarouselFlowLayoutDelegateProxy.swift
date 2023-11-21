@@ -12,6 +12,8 @@ final class HorizontalSnapCarouselFlowLayoutDelegateProxy: NSObject {
     // MARK: - Public and internal vars
 
     var cellSizeProvider: ((UICollectionView, UICollectionViewLayout, IndexPath) -> (CGSize))?
+    var onDidScroll: (() -> Void)?
+    var onDidEndScrolling: (() -> Void)?
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
@@ -24,5 +26,19 @@ extension HorizontalSnapCarouselFlowLayoutDelegateProxy:
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
         self.cellSizeProvider?(collectionView, collectionViewLayout, indexPath) ?? .zero
+    }
+
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if !decelerate {
+            self.onDidEndScrolling?()
+        }
+    }
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        self.onDidEndScrolling?()
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.onDidScroll?()
     }
 }

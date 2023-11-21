@@ -22,6 +22,13 @@ final class ThirdViewController: UIViewController {
         self.snapCarousel.cellConfigurator = { cell, indexPath, item in
             cell.number = item
         }
+        self.snapCarousel.onCurrentCellChanged = { [weak snapCarousel] currentCell, _ in
+            snapCarousel?.visibleCells.forEach { $0.backgroundColor = .green }
+            currentCell.backgroundColor = .yellow
+        }
+        self.snapCarousel.onDidEndScrolling = { currentCell, _ in
+            print(currentCell.number)
+        }
         self.snapCarousel.items = (0...6).map { String($0) }
 
         self.snapCarousel.translatesAutoresizingMaskIntoConstraints = false

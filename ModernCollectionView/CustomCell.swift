@@ -11,7 +11,7 @@ final class CustomCell: UICollectionViewCell {
 
     var number: String {
         get {
-            self.label?.text ?? "0"
+            self.label?.text ?? ""
         }
         set {
             self.label?.text = newValue
@@ -22,5 +22,10 @@ final class CustomCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.label.text = ""
     }
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-typealias ItemNumber = Int
+typealias CellNumber = Int
 
 private enum Section {
     case main
@@ -17,7 +17,12 @@ final class HorizontalSnapCarouselView<Item: Hashable, Cell: UICollectionViewCel
 
     // MARK: - Internal and private vars
 
-    var cellConfigurator: ((Cell, ItemNumber, Item) -> ())?
+    var cellConfigurator: ((Cell, CellNumber, Item) -> Void)?
+    var onCurrentCellChanged: ((Cell, CellNumber) -> Void)?
+    var onDidEndScrolling: ((Cell, CellNumber) -> Void)?
+    var visibleCells: [Cell] {
+        (self.collectionView.visibleCells as? [Cell]) ?? []
+    }
     var items: [Item] = [] {
         didSet {
             self.applySnapshot()
@@ -29,8 +34,9 @@ final class HorizontalSnapCarouselView<Item: Hashable, Cell: UICollectionViewCel
     private typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Item>
     private typealias DataSource = UICollectionViewDiffableDataSource<Section, Item>
 
-    private var dataSource: DataSource?
     private let delegateProxy = HorizontalSnapCarouselFlowLayoutDelegateProxy()
+    private var dataSource: DataSource?
+
     private let collectionView: UICollectionView = {
         let layout = HorizontalSnapCarouselFlowLayout()
         layout.scrollDirection = .horizontal
@@ -41,6 +47,21 @@ final class HorizontalSnapCarouselView<Item: Hashable, Cell: UICollectionViewCel
         )
         return collectionView
     }()
+
+    private var currentCell: (cell: Cell, cellNumber: CellNumber)? {
+        let visibleRect = CGRect(
+            origin: self.collectionView.contentOffset,
+            size: self.collectionView.bounds.size
+        )
+        let midPoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
+        guard
+            let currentIndexPath = self.collectionView.indexPathForItem(at: midPoint),
+            let currentCell = self.collectionView.cellForItem(at: currentIndexPath) as? Cell
+        else {
+            return nil
+        }
+        return (currentCell, currentIndexPath.item)
+    }
 
     // MARK: - Lifecycle
 
@@ -80,6 +101,22 @@ final class HorizontalSnapCarouselView<Item: Hashable, Cell: UICollectionViewCel
             (layout as? UICollectionViewFlowLayout)?.itemSize = cellSize
             return cellSize
         }
+        self.delegateProxy.onDidScroll = { [weak self] in
+            guard
+                let currentCell = self?.currentCell
+            else {
+                return
+            }
+            self?.onCurrentCellChanged?(currentCell.cell, currentCell.cellNumber)
+        }
+        self.delegateProxy.onDidEndScrolling = { [weak self] in
+            guard
+                let currentCell = self?.currentCell
+            else {
+                return
+            }
+            self?.onDidEndScrolling?(currentCell.cell, currentCell.cellNumber)
+        }
 
         self.collectionView.decelerationRate = .fast
         self.collectionView.backgroundColor = .clear
@@ -110,6 +147,9 @@ final class HorizontalSnapCarouselView<Item: Hashable, Cell: UICollectionViewCel
         self.dataSource?.apply(
             snapshot,
             animatingDifferences: true
-        )
+        ) { [weak self] in
+            guard let currentCell = self?.currentCell else { return }
+            self?.onCurrentCellChanged?(currentCell.cell, currentCell.cellNumber)
+        }
     }
 }
